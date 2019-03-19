@@ -95,8 +95,13 @@ public class Array<E> {
 
         E temp = data[index];
 
-        for (int i=index; i<size;i++){
-            data[i] = data[i+1];
+//        // throw new IndexOutOfBoundsException()
+//        for (int i=index; i<size; i++){
+//            data[i] = data[i+1];
+//        }
+
+        for (int i=index+1; i<size; i++){
+            data[i-1] = data[i];
         }
         size--;
 
@@ -113,7 +118,7 @@ public class Array<E> {
 
     // O(1)
     public E removeLast(){
-        return  remove( -1);
+        return  remove( size-1);
     }
 
     // O(n)
@@ -129,6 +134,14 @@ public class Array<E> {
         if (index <0 || index > size)
             throw new IllegalArgumentException("index error");
         return data[index];
+    }
+
+    public E getFirst(){
+        return get(0);
+    }
+
+    public E getLast(){
+        return get(size-1);
     }
 
     // O(1)
