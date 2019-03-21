@@ -23,7 +23,7 @@ public class LoopQueue<E> implements Queue<E> {
     }
 
     public int getCapacity(){
-        return data.length -1;
+        return data.length - 1;
     }
 
     public boolean isEmpty() {
