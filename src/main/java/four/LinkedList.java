@@ -3,11 +3,11 @@ package four;
 public class LinkedList<E> {
 
     private int size;
-    private Node head;
+    private Node dummyHead;
 
     public LinkedList(){
         this.size = 0;
-        this.head = null;
+        this.dummyHead = new Node(null, null);
     }
 
     public boolean isEmpty(){
@@ -19,11 +19,7 @@ public class LinkedList<E> {
     }
 
     public void addFirst(E e){
-        Node newNode = new Node(e);
-        newNode.next = head;
-        head = newNode;
-
-        size ++;
+        add(0, e);
     }
 
     public void add(int index, E e){
@@ -31,22 +27,17 @@ public class LinkedList<E> {
             throw new IllegalArgumentException("Index Error");
         }
 
-        if (index == 0){
-            addFirst(e);
-        }else {
-            Node prev = head;
+        Node prev = dummyHead;
 
-            for (int i=0; i<index-1;i++){
-                prev = prev.next;
-            }
-
-            Node newNode = new Node(e);
-            newNode.next = prev.next;
-            prev.next = newNode;
-
-            size ++;
-
+        for (int i=0; i<index;i++){
+            prev = prev.next;
         }
+
+        Node newNode = new Node(e);
+        newNode.next = prev.next;
+        prev.next = newNode;
+
+        size ++;
 
     }
 
@@ -58,10 +49,10 @@ public class LinkedList<E> {
     public String toString(){
         StringBuilder sb = new StringBuilder();
 
-        while (head != null){
-            sb.append(head.e);
+        while (dummyHead.next != null){
+            dummyHead = dummyHead.next;
+            sb.append(dummyHead.e);
             sb.append(", ");
-            head = head.next;
         }
 
         return sb.toString();
