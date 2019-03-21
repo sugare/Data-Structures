@@ -20,4 +20,9 @@ public class Node<E> {
         this.next = null;
     }
 
+    public String toString(){
+
+        return e.toString();
+    }
+
 }
